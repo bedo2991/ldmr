@@ -21,7 +21,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
+        LDMR:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -32,12 +32,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->fetch('script') ?>
 	<script type="text/javascript" src='<?=$this->request->webroot."DataTables/jQuery-1.12.3/jquery-1.12.3.js"?>'></script>
-	<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/af-2.1.2/sc-1.4.2/se-1.2.0/datatables.css"/>-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/af-2.1.2/sc-1.4.2/se-1.2.0/datatables.css"/>
  
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/af-2.1.2/sc-1.4.2/se-1.2.0/datatables.js"></script>
 	
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+	<?= $this->Html->css('ldmr.css') ?>
 	<?= $this->fetch('css') ?>
 	<?= $this->Html->script('DataTables.cakephp.dataTables.js');?>
 </head>
