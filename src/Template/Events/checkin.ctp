@@ -59,7 +59,7 @@ echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'tabl
         </tr>
         <tr>
             <th><?= __('Checked In/Invited') ?></th>
-            <td><?= $this->Number->format($alreadyCheckedIn). " / " .$this->Number->format($event->invited_user_count) ?></td>
+            <td><span id="checked_in_counter"><?= $this->Number->format($alreadyCheckedIn). "</span> / " .$this->Number->format($event->invited_user_count) ?></td>
         </tr>
         <tr>
             <th><?= __('Start Time') ?></th>
@@ -90,7 +90,8 @@ function sendRequest(id)
             success: function(status){                 
                     console.debug(status);
 					$('a#check_in_'+id).parent().parent().remove()
-            }, 
+        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1);     
+		}, 
             error: function(xhr,textStatus,error){ 
                 alert(error); 
 
