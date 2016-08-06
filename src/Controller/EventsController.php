@@ -141,4 +141,13 @@ class EventsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	
+	public function isAuthorized($user)
+	{
+	  // All registered users can see the index
+		if ($this->request->action === 'index') {
+			return true;
+		}
+	}
 }

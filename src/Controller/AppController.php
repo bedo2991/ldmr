@@ -65,7 +65,8 @@ class AppController extends Controller
                 'controller' => 'Pages',
                 'action' => 'display',
                 'home'
-            ]
+            ],
+			'authorize' => array('Controller')
         ]);
         $this->loadComponent('RequestHandler');
 		$this->loadComponent('RequestHandler');
@@ -73,10 +74,24 @@ class AppController extends Controller
 		$this->loadComponent('DataTables.DataTables');
     }
 	
+	/*
 	public function beforeFilter(Event $event)
     {
         $this->Auth->allow(['index', 'view', 'display']);
     }
+	*/
+	
+	public function isAuthorized($user)
+	{
+		// Admin can access every action
+		if (isset($user['role']) && $user['role'] === 'admin') {
+			return true;
+		}
+
+		// Default deny
+		$this->Auth->authError = "AUTH ERROR";
+		return false;
+	}
 
     /**
      * Before render callback.

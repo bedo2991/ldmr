@@ -18,7 +18,7 @@ class ManagersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['add', 'logout']);
+        $this->Auth->allow(['logout']);
     }
 	
 	public function login()
@@ -140,4 +140,22 @@ class ManagersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function isAuthorized($user)
+	{
+	  // All registered users can add articles
+		if ($this->request->action === 'login') {
+			return true;
+		}
+
+    // The owner of an article can edit and delete it
+    if (in_array($this->request->action, ['edit', 'delete'])) {
+        $articleId = (int)$this->request->params['pass'][0];
+        if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+            return true;
+        }
+    }
+
+    return parent::isAuthorized($user);
+	}
 }
