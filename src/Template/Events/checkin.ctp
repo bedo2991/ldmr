@@ -81,6 +81,8 @@ echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'tabl
 </div>
 <script>
 	var lastSuccessfulCheckInID = null;
+	$('input[type=search]').attr('autocomplete', 'off').attr('autocapitalize', 'off').attr('spellcheck', 'off');
+	
 function rollbackLastCheckIn(){
 	if(lastSuccessfulCheckInID!=null)
 	{
