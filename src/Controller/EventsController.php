@@ -149,5 +149,6 @@ class EventsController extends AppController
 		if ($this->request->action === 'index') {
 			return true;
 		}
+		return parent::isAuthorized($user);
 	}
 }

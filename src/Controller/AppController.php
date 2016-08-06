@@ -48,6 +48,7 @@ class AppController extends Controller
         parent::initialize();
 
 		$this->loadComponent('Auth', [
+		'authorize' => ['Controller'],
 		'loginAction' => [
             'controller' => 'Managers',
             'action' => 'login',
@@ -66,7 +67,6 @@ class AppController extends Controller
                 'action' => 'display',
                 'home'
             ],
-			'authorize' => array('Controller')
         ]);
         $this->loadComponent('RequestHandler');
 		$this->loadComponent('RequestHandler');
@@ -89,7 +89,6 @@ class AppController extends Controller
 		}
 
 		// Default deny
-		$this->Auth->authError = "AUTH ERROR";
 		return false;
 	}
 
