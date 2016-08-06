@@ -82,7 +82,10 @@ function sendRequest(id)
 		$('input[type=search]').val("").change().focus();
         $.ajax({ 
             type: 'POST', 
-            url: "/invitedUsers/check/"+id,
+            url: "<?=$this->Url->build([
+			"controller" => "InvitedUsers",
+			"action" => "check",
+			]).DS?>" + id,
 			dataType: 'json',
             success: function(status){                 
                     console.debug(status);
