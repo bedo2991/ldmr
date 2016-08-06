@@ -58,10 +58,8 @@ class InvitedUsersController extends AppController
 			if( $invitedUser ) {
 				$invitedUser->checkedin = date('Y-m-d H:i:s');
 				if ($this->InvitedUsers->save($invitedUser)) {
-					//$this->Flash->success(__('The invited user has been saved.'));
-       				$this->set('invitedUSer', $invitedUser);
-        			$this->set('_serialize', ['invitedUSer']);
-					//return $this->redirect(['action' => 'index']);
+       				$this->set('invitedUser', $invitedUser);
+        			$this->set('_serialize', ['invitedUser']);
 				} else {
 					$this->Flash->error(__('The invited user could not be saved. Please, try again.'));
 				}
@@ -78,11 +76,11 @@ class InvitedUsersController extends AppController
 			]);
 
 			if( $invitedUser ) {
-				$invitedUser = $this->InvitedUsers->patchEntity($invitedUser, ['checkedin'=>null]);
+				$invitedUser->checkedin = null;
 				if ($this->InvitedUsers->save($invitedUser)) {
-					$this->Flash->success(__('The invited user has been saved.'));
-
-					return $this->redirect(['action' => 'index']);
+					//$this->Flash->success(__('The invited user has been saved.'));
+					$this->set('invitedUser', $invitedUser);
+        			$this->set('_serialize', ['invitedUser']);
 				} else {
 					$this->Flash->error(__('The invited user could not be saved. Please, try again.'));
 				}

@@ -1,3 +1,18 @@
 select.input-sm{
 	width:2.3125rem;
 }
+
+#checkin_success{
+	background:#80FFA2;
+    border-radius: 25px;
+	border: 1px red solid;
+	position: absolute;
+	top:4pt;
+    left: 0;
+  	right: 0;
+  	margin: 0 auto;
+	max-width:250pt;
+	padding:5pt;
+	text-align:center;
+	display:none;
+}

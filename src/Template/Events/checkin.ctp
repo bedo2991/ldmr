@@ -13,6 +13,8 @@
     </ul>
 </nav>
 -->
+<div id="checkin_success">The guest has been checked in. (<a href="#" onclick="rollbackLastCheckIn()">Cancel</a>)</div>
+
 <div class="events view large-12 medium-12 columns content">
     <h3><?= h($event->name) ?></h3>
     <div class="related">
@@ -78,6 +80,32 @@ echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'tabl
 	
 </div>
 <script>
+	var lastSuccessfulCheckInID = null;
+function rollbackLastCheckIn(){
+	if(lastSuccessfulCheckInID!=null)
+	{
+	$.ajax({ 
+            type: 'POST', 
+            url: '<?=$this->Url->build([
+			"controller" => "InvitedUsers",
+			"action" => "uncheck",
+			]).DS?>' + lastSuccessfulCheckInID,
+			dataType: 'json',
+            success: function(status){                 
+                    console.debug(status);
+        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) - 1);     
+		}, 
+            error: function(xhr,textStatus,error){ 
+                alert(error); 
+
+        } });  
+	}
+	else
+	{
+		alert("Error: I could not cancel the last check in.");
+	}
+}	
+	
 function sendRequest(id)
 	{
 		$('input[type=search]').val("").change().focus();
@@ -90,8 +118,10 @@ function sendRequest(id)
 			dataType: 'json',
             success: function(status){                 
                     console.debug(status);
+					lastSuccessfulCheckInID = id;
 					$('a#check_in_'+id).parent().parent().remove()
-        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1);     
+        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1); 
+					$("#checkin_success").show().delay(5000).fadeOut();
 		}, 
             error: function(xhr,textStatus,error){ 
                 alert(error); 
