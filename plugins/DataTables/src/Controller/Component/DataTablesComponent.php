@@ -14,7 +14,7 @@ class DataTablesComponent extends Component
         'start' => 0,
         'length' => 10,
         'order' => [],
-        'prefixSearch' => true, // use "LIKE …%" instead of "LIKE %…%" conditions
+        'prefixSearch' => false, // use "LIKE …%" instead of "LIKE %…%" conditions
         'conditionsOr' => [],  // table-wide search conditions
         'conditionsAnd' => [], // column search conditions
         'matching' => [],      // column search conditions for foreign tables

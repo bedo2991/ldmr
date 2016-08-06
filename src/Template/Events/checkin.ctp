@@ -42,6 +42,7 @@
 		[
 			'title' => __('Action'),
 			'searchable' => false,
+			'sortable' => false,
 			'name' => 'InvitedUsers.id',
 			'data' => 'id',
 		    'render' => $this->DataTables->callback('dt.render.checkinbutton'),
