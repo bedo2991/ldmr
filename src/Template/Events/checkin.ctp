@@ -16,9 +16,8 @@
 <div id="checkin_success">The guest has been checked in. (<a href="#" onclick="rollbackLastCheckIn()">Cancel</a>)</div>
 
 <div class="events view large-12 medium-12 columns content">
-    <h3><?= h($event->name) ?></h3>
+    <h4><?= h($event->name) ?></h4>
     <div class="related">
-        <h4><?= __('Invited Users') ?></h4>
         <?php if (!empty($event->invited_users)): ?>
 		
 	<?php
