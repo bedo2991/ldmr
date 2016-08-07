@@ -71,7 +71,10 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
 		$this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-		$this->loadComponent('DataTables.DataTables');
+		$this->loadComponent('DataTables.DataTables',
+							 [
+							 'prefixSearch'=>false //Searches for %TEXT% instead of TEXT%
+							 ]);
     }
 	
 	/*
