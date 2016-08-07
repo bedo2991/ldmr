@@ -13,9 +13,12 @@
     <h3><?= __('Entrance Check') ?></h3>
 	<b>Over 18 before: <span id="old18"></span></b>
 	<hr>
-	<h4>Blacklist</h4>
+	<h4 id="blTitle">Blacklist</h4>
 	<input id="blacklisted"/>
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 <script>
 
 function get18(){
@@ -70,6 +73,13 @@ var options = {
 };
 
 $("#blacklisted").easyAutocomplete(options);
-$('#blacklisted').focusout( function(){$('#blacklisted').val("")} )
+$('#blacklisted').focusout( function(){$('#blacklisted').val("")} );
+		
+$("#blacklisted").focus(function() {
+    $('html, body').animate({
+        scrollTop: $("#blTitle").offset().top
+    }, 1000);
+});
+		
 </script>
 
