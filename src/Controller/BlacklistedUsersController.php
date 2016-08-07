@@ -63,20 +63,6 @@ class BlacklistedUsersController extends AppController
         $this->set(compact('blacklistedUsers'));
         $this->set('_serialize', ['blacklistedUsers']);
     }
-	
-	public function listjson()
-    {
-     if ($this->request->is('ajax')) {
-    		$this->response->disableCache();
-		}
-		else
-		return;
-		$blacklistedUsers = $this->BlacklistedUsers->find('all',[
-			'order' => ['BlacklistedUsers.fullname' => 'asc']
-		])->all();
-		$this->set(compact('blacklistedUsers'));
-        $this->set('_serialize', ['blacklistedUsers']);
-    }
 
     /**
      * Add method
@@ -145,4 +131,15 @@ class BlacklistedUsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function isAuthorized($user)
+	{
+	  // All registered users can see the index
+		if($user['role'] === 'entrance'){
+			if (in_array($this->request->action, ['search', 'view'])) {
+					return true;
+			}
+		}
+		return parent::isAuthorized($user);
+	}
 }

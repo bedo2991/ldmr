@@ -178,4 +178,14 @@ class InvitedUsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function isAuthorized($user)
+	{
+		if($user['role'] === 'entrance'){
+			if (in_array($this->request->action, ['event', 'check', 'uncheck'])) {
+					return true;
+			}
+		}
+		return parent::isAuthorized($user);
+	}
 }
