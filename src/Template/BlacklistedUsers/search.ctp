@@ -15,11 +15,14 @@
 	<hr>
 	<h4 id="blTitle">Blacklist</h4>
 	<input id="blacklisted"/>
+	<br>
+	<p>This list is initialized when you first load the page and is used locally (offline) during the whole time.</p>
+	<p>If for any reason you need to update it, please refresh the page.</p>
 </div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br>
-<br><br><br><br><br><br>
-<br><br><br><br><br><br>
+<br><br><br><br>
 
 <script>
 
