@@ -16,9 +16,11 @@
 	<h4 id="blTitle">Blacklist</h4>
 	<input id="blacklisted"/>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+
 <script>
 
 function get18(){
@@ -77,7 +79,7 @@ $('#blacklisted').focusout( function(){$('#blacklisted').val("")} );
 		
 $("#blacklisted").focus(function() {
     $('html, body').animate({
-        scrollTop: $("#blTitle").offset().top
+        scrollTop: $("#old18").offset().top
     }, 1000);
 });
 		
