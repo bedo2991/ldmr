@@ -11,7 +11,7 @@
 </nav>-->
 <div class="blacklistedUsers view large-9 medium-8 columns content">
     <h3><?= __('Entrance Check') ?></h3>
-	<b>Today is 18 years old everyone who is born before:<br><br><span id="old18"></span></b>
+	<b>Over 18 before: <span id="old18"></span></b>
 	<hr>
 	<h4>Blacklist</h4>
 	<input id="blacklisted"/>
