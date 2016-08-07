@@ -25,8 +25,7 @@ use Cake\Network\Exception\NotFoundException;
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>
+    <title> LDMR: Lasst die Menschen Rein!
     </title>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
@@ -34,7 +33,7 @@ use Cake\Network\Exception\NotFoundException;
 </head>
 <body class="home">
 	<div id="content">
-		<h1>LDMR: Lasst die Menschen rein</h1>
+		<h1>LDMR: Lasst die Menschen rein!</h1>
 		<p>LDMR means in German <i>Let the people in</i>. It is a web based application meant to manage guest lists for private events.</p>
 		<?php if ($this->request->session()->read('Auth.User.id')): ?>
 		<ul>
@@ -44,7 +43,7 @@ use Cake\Network\Exception\NotFoundException;
 		<?php endif ?>
 		</ul>
 		<?php else: ?>
-		<p>To continue, please <?= $this->Html->link(__('Login'), ['controller'=>'Managers','action' => 'login']) ?></p>
+		<p>To continue, please <?= $this->Html->link(__('Login'), ['controller'=>'Managers','action' => 'login']); ?>.</p>
 		<?php endif; ?>
 	</div>
 	<footer>For comments or problems, see the <a href="https://github.com/bedo2991/ldmr/" target="_blank">repository on Github</a>.</footer>
