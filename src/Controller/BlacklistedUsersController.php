@@ -34,11 +34,48 @@ class BlacklistedUsersController extends AppController
     public function view($id = null)
     {
         $blacklistedUser = $this->BlacklistedUsers->get($id, [
-            'contain' => ['Validities']
+            'contain' => ['Validities', 'Validities.Clubs']
         ]);
 
         $this->set('blacklistedUser', $blacklistedUser);
         $this->set('_serialize', ['blacklistedUser']);
+    }
+	
+	    /**
+     * Search method
+     *
+     * @param string|null $id Blacklisted User id.
+     * @return \Cake\Network\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function search()
+    {
+       $blacklistedUsers = $this->BlacklistedUsers->find('all',[
+	   'order'=>['BlacklistedUsers.fullname'=>'ASC']
+	   ]);
+		foreach ($blacklistedUsers as $row) {
+			$row['basic'] = strtr(utf8_decode($row->fullname), 
+            utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
+            'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy');
+		}
+		
+
+        $this->set(compact('blacklistedUsers'));
+        $this->set('_serialize', ['blacklistedUsers']);
+    }
+	
+	public function listjson()
+    {
+     if ($this->request->is('ajax')) {
+    		$this->response->disableCache();
+		}
+		else
+		return;
+		$blacklistedUsers = $this->BlacklistedUsers->find('all',[
+			'order' => ['BlacklistedUsers.fullname' => 'asc']
+		])->all();
+		$this->set(compact('blacklistedUsers'));
+        $this->set('_serialize', ['blacklistedUsers']);
     }
 
     /**

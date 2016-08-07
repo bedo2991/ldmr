@@ -16,3 +16,7 @@ select.input-sm{
 	text-align:center;
 	display:none;
 }
+
+#blacklisted{
+	width:100%;
+}

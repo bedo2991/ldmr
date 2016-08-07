@@ -68,6 +68,42 @@ class ValiditiesController extends AppController
         $this->set('_serialize', ['validity']);
     }
 
+
+	public function addAll($blackListedId = null)
+	{
+	if ($this->request->is(['get', 'post'])) {
+	if($blackListedId == null)
+	{
+		$this->Flash->error(__('A valid user id must be provided to use this function.'));
+		return $this->redirect(['controller'=>'BlacklistedUsers','action' => 'view', $blackListedId]);
+	}
+		$validities = $this->Validities->find('all', [
+		'conditions'=>['blacklisted_user_id'=>$blackListedId]	
+		]);
+	if($validities->count()>0)
+	{
+		debug("error2");
+		$this->Flash->error(__('You can use this function only if the person does not have any validity set already.'));
+		return $this->redirect(['controller'=>'BlacklistedUsers','action' => 'view', $blackListedId]);
+	}
+	$this->loadModel('Clubs');
+	$clubs = $this->Clubs->find('all');
+	foreach ($clubs as $club){
+	
+	$validity = $this->Validities->newEntity();
+
+	    $validity->club_id = $club->id;
+	    $validity->blacklisted_user_id = $blackListedId;
+            if (! $this->Validities->save($validity)) {
+                $this->Flash->error(__('Not all validities could not be saved. Please, try again.'));
+            }
+
+		}
+		$this->Flash->success(__('The validities has been saved.'));
+	}
+	return $this->redirect(['controller'=>'BlacklistedUsers','action' => 'view', $blackListedId]);
+	}
+
     /**
      * Edit method
      *

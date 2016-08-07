@@ -10,16 +10,8 @@
     </ul>
 </nav>
 <div class="blacklistedUsers view large-9 medium-8 columns content">
-    <h3><?= h($blacklistedUser->id) ?></h3>
+    <h3><?= h($blacklistedUser->fullname) ?></h3>
     <table class="vertical-table">
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= h($blacklistedUser->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Fullname') ?></th>
-            <td><?= h($blacklistedUser->fullname) ?></td>
-        </tr>
         <tr>
             <th><?= __('Picture Path') ?></th>
             <td><?= h($blacklistedUser->picture_path) ?></td>
@@ -58,16 +50,12 @@
         <?php if (!empty($blacklistedUser->validities)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Blacklisted User Id') ?></th>
-                <th><?= __('Club Id') ?></th>
+                <th><?= __('Club') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($blacklistedUser->validities as $validities): ?>
             <tr>
-                <td><?= h($validities->id) ?></td>
-                <td><?= h($validities->blacklisted_user_id) ?></td>
-                <td><?= h($validities->club_id) ?></td>
+                <td><?= h($validities->club->full_name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Validities', 'action' => 'view', $validities->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Validities', 'action' => 'edit', $validities->id]) ?>
@@ -76,6 +64,8 @@
             </tr>
             <?php endforeach; ?>
         </table>
+	<?php else:?>
+	 <?= $this->Html->link(__('Click here to set: this person may not access any club'), ['controller' => 'Validities', 'action' => 'addAll', $blacklistedUser->id]);?>
         <?php endif; ?>
     </div>
 </div>

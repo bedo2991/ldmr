@@ -38,6 +38,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 	
 	<script type="text/javascript" src='<?=$this->request->webroot."js/easy-autocomplete-1_3_5/jquery.easy-autocomplete.min.js"?>'></script>
 	
+	<link rel="stylesheet" type="text/css" href='<?=$this->request->webroot."js/easy-autocomplete-1_3_5/easy-autocomplete.min.css"?>'/>
+	
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 	<?= $this->Html->css('ldmr.css') ?>
@@ -53,7 +55,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-				<li><?= $this->Html->link(__('Logout'), ['controller'=>'Managers','action' => 'logout']) ?></li>
+				<?php if($this->request->session()->read('Auth.User.id')): ?>
+				<li><?=  $this->Html->link($this->request->session()->read('Auth.User.username').' ('.$this->request->session()->read('Auth.User.role').') '.__('Logout'), ['controller'=>'Managers','action' => 'logout']) ?></li>
+				<?php endif; ?>
             </ul>
         </div>
     </nav>
