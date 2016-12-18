@@ -20,3 +20,42 @@ select.input-sm{
 #blacklisted{
 	width:100%;
 }
+
+.grid{
+	display:block;
+}
+
+.gridcell{
+	display:inline-block;
+	position: relative;
+	border:1px gray solid;
+	width: 45pt;
+	height:45pt;
+	line-height: 45pt;
+	font-weight: bolder;
+	text-align:center;
+	margin:1pt;
+}
+
+.counter{
+	position: absolute;
+	top:0pt;
+	right:0pt;
+	color:red;
+	font-size:small;
+	line-height: normal;
+}
+
+.grid_detail{
+	font-weight: normal;
+	font-size: default;
+	display:block;
+	padding:2pt;
+}
+.dialog{
+	width: 100%;
+	display:none;
+}
+
+/*.grid_detail{ display:none; }
+.gridcell:active .grid_detail{ display:block; }*/

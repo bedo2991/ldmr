@@ -40,7 +40,7 @@ class BlacklistedUsersController extends AppController
         $this->set('blacklistedUser', $blacklistedUser);
         $this->set('_serialize', ['blacklistedUser']);
     }
-	
+
 	    /**
      * Search method
      *
@@ -53,12 +53,12 @@ class BlacklistedUsersController extends AppController
        $blacklistedUsers = $this->BlacklistedUsers->find('all',[
 	   'order'=>['BlacklistedUsers.fullname'=>'ASC']
 	   ]);
+     
 		foreach ($blacklistedUsers as $row) {
-			$row['basic'] = strtr(utf8_decode($row->fullname), 
+			$row['basic'] = strtr(utf8_decode($row->fullname),
             utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
             'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy');
 		}
-		
 
         $this->set(compact('blacklistedUsers'));
         $this->set('_serialize', ['blacklistedUsers']);
@@ -131,7 +131,7 @@ class BlacklistedUsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-	
+
 	public function isAuthorized($user)
 	{
 	  // All registered users can see the index

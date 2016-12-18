@@ -10,20 +10,20 @@
     </ul>
 </nav>-->
 <div class="blacklistedUsers view large-9 medium-8 columns content">
-    <h3><?= __('Entrance Check') ?></h3>
 	<b>Over 18 before: <span id="old18"></span></b>
 	<hr>
-	<h4 id="blTitle">Blacklist</h4>
+  <div id="blacklistedGrid" class="grid">
+
+  </div>
+  <hr>
+	<h4 id="blTitle"><?=__('Blacklist Search')?></h4>
 	<input id="blacklisted"/>
 	<br>
 	<p>This list is initialized when you first load the page and is used locally (offline) during the whole time.</p>
 	<p>If for any reason you need to update it, please refresh the page.</p>
 </div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br>
-<br><br><br><br>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 
 function get18(){
@@ -53,20 +53,20 @@ var options = {
     $bu->id
 ]); ?>"},
 		<?php endif; ?>
-		 
+
             <?php endforeach; ?>
-		
+
 		],
-  
+
   getValue: "fn",
   placeholder: "Name or Surname",
 
-  list: {	
+  list: {
     match: {
       enabled: true
     }
   },
-		
+
 	template: {
         type: "links",
         fields: {
@@ -79,12 +79,45 @@ var options = {
 
 $("#blacklisted").easyAutocomplete(options);
 $('#blacklisted').focusout( function(){$('#blacklisted').val("")} );
-		
+
 $("#blacklisted").focus(function() {
     $('html, body').animate({
         scrollTop: $("#old18").offset().top
     }, 1000);
 });
-		
-</script>
 
+//building alphabetical
+	var alphData = {
+    data: [
+<?php foreach ($blacklistedUsers as $bu): ?>
+{"fn": "<?=$bu->fullname?>", "link": "<?=$this->Url->build([
+"controller" => "BlacklistedUsers",
+"action" => "view",
+$bu->id
+]); ?>"},
+        <?php endforeach; ?>
+      ]};
+var alph = [];
+for(var i=0; i< alphData.data.length; i++){
+  var name = alphData.data[i].fn;
+  var initial = name.substring(0,1).toLowerCase();
+  if(alph[initial] === undefined){
+    alph[initial] = [];
+    $('#blacklistedGrid').append('<div id="cell_'+initial+'" class="gridcell">'+initial.toUpperCase()+'</div>');
+    $('#cell_'+initial).append('<span id="counter_'+initial+'" class="counter">0</span>');
+    $('#cell_'+initial).append('<div class="dialog" id="cell_dialog_'+initial+'"></div>');
+    $('#cell_'+initial).click(function(){
+      var dialog = $(this).children('.dialog').dialog({open: function() {
+            var foo = $(this);
+            setTimeout(function() {
+               foo.dialog('destroy');
+            }, 900*$(this).children().size());
+        }});
+    });
+  }
+  alph[initial].push(alphData.data[i]);
+  $('#counter_'+initial).text($('#counter_'+initial).text()*1+1);
+  $('#cell_dialog_'+initial).append('<a href="'+alphData.data[i].link+'"><div class="grid_detail">'+name+'</div></a>');
+}
+
+</script>
