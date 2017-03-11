@@ -13,33 +13,27 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('fullname') ?></th>
                 <th><?= $this->Paginator->sort('email') ?></th>
                 <th><?= $this->Paginator->sort('accepted') ?></th>
                 <th><?= $this->Paginator->sort('event_id') ?></th>
                 <th><?= $this->Paginator->sort('manager_id') ?></th>
                 <th><?= $this->Paginator->sort('checkedin') ?></th>
-                <th><?= $this->Paginator->sort('created') ?></th>
-                <th><?= $this->Paginator->sort('modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($invitedUsers as $invitedUser): ?>
             <tr>
-                <td><?= h($invitedUser->id) ?></td>
                 <td><?= h($invitedUser->fullname) ?></td>
                 <td><?= $this->Number->format($invitedUser->email) ?></td>
                 <td><?= h($invitedUser->accepted) ?></td>
                 <td><?= $invitedUser->has('event') ? $this->Html->link($invitedUser->event->name, ['controller' => 'Events', 'action' => 'view', $invitedUser->event->id]) : '' ?></td>
                 <td><?= $invitedUser->has('manager') ? $this->Html->link($invitedUser->manager->fullname, ['controller' => 'Managers', 'action' => 'view', $invitedUser->manager->id]) : '' ?></td>
                 <td><?= h($invitedUser->checkedin) ?></td>
-                <td><?= h($invitedUser->created) ?></td>
-                <td><?= h($invitedUser->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $invitedUser->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $invitedUser->id]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $invitedUser->id]) ?><br/>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $invitedUser->id]) ?><br/>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $invitedUser->id], ['confirm' => __('Are you sure you want to delete # {0}?', $invitedUser->id)]) ?>
                 </td>
             </tr>

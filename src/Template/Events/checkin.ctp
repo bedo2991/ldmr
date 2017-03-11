@@ -19,7 +19,7 @@
     <h4><?= h($event->name) ?></h4>
     <div class="related">
         <?php if (!empty($event->invited_users)): ?>
-		
+
 	<?php
         $options = [
     'ajax' => [
@@ -53,7 +53,7 @@
 ];
 echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'table table-striped']); ?>
         <?php endif; ?>
-    </div>	
+    </div>
 	<table class="vertical-table">
         <tr>
             <th><?= __('Manager') ?></th>
@@ -76,59 +76,59 @@ echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'tabl
             <td><?= $event->on_invitation_only ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
-	
+
 </div>
 <script>
 	var lastSuccessfulCheckInID = null;
 	$('input[type=search]').attr('autocomplete', 'off').attr('autocapitalize', 'off').attr('spellcheck', 'off');
-	
+
 function rollbackLastCheckIn(){
 	if(lastSuccessfulCheckInID!=null)
 	{
-	$.ajax({ 
-            type: 'POST', 
+	$.ajax({
+            type: 'POST',
             url: '<?=$this->Url->build([
 			"controller" => "InvitedUsers",
 			"action" => "uncheck",
 			]).DS?>' + lastSuccessfulCheckInID,
 			dataType: 'json',
-            success: function(status){                 
+            success: function(status){
                     console.debug(status);
-        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) - 1);     
-		}, 
-            error: function(xhr,textStatus,error){ 
-                alert(error); 
+        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) - 1);
+		},
+            error: function(xhr,textStatus,error){
+                alert(error);
 
-        } });  
+        } });
 	}
 	else
 	{
 		alert("Error: I could not cancel the last check in.");
 	}
-}	
-	
+}
+
 function sendRequest(id)
 	{
 		$('input[type=search]').val("").change().focus();
-        $.ajax({ 
-            type: 'POST', 
+        $.ajax({
+            type: 'POST',
             url: "<?=$this->Url->build([
 			"controller" => "InvitedUsers",
 			"action" => "check",
 			]).DS?>" + id,
 			dataType: 'json',
-            success: function(status){                 
+            success: function(status){
                     console.debug(status);
 					lastSuccessfulCheckInID = id;
 					$('a#check_in_'+id).parent().parent().remove()
-        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1); 
+        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1);
 					$("#checkin_success").show().delay(5000).fadeOut();
-		}, 
+		},
             error: function(xhr,textStatus,error){ 
-                alert(error); 
+                alert(error);
 
-        } });  
+        } });
 	}
 
-setTimeout(function(){$('input[type=search]')[0].focus()},1000);	
+setTimeout(function(){$('input[type=search]')[0].focus()},1000);
 </script>

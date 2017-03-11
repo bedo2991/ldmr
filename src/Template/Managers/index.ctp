@@ -15,29 +15,23 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('fullname') ?></th>
                 <th><?= $this->Paginator->sort('username') ?></th>
                 <th><?= $this->Paginator->sort('role') ?></th>
                 <th><?= $this->Paginator->sort('club_id') ?></th>
-                <th><?= $this->Paginator->sort('created') ?></th>
-                <th><?= $this->Paginator->sort('modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($managers as $manager): ?>
             <tr>
-                <td><?= h($manager->id) ?></td>
                 <td><?= h($manager->fullname) ?></td>
                 <td><?= h($manager->username) ?></td>
                 <td><?= h($manager->role) ?></td>
                 <td><?= $manager->has('club') ? $this->Html->link($manager->club->short_name, ['controller' => 'Clubs', 'action' => 'view', $manager->club->id]) : '' ?></td>
-                <td><?= h($manager->created) ?></td>
-                <td><?= h($manager->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $manager->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $manager->id]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $manager->id]) ?><br/>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $manager->id]) ?><br/>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $manager->id], ['confirm' => __('Are you sure you want to delete # {0}?', $manager->id)]) ?>
                 </td>
             </tr>
