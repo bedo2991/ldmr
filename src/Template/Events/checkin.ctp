@@ -109,7 +109,6 @@ function rollbackLastCheckIn(){
 
 function sendRequest(id)
 	{
-		$('input[type=search]').val("").change().focus();
         $.ajax({
             type: 'POST',
             url: "<?=$this->Url->build([
@@ -120,6 +119,7 @@ function sendRequest(id)
             success: function(status){
                     console.debug(status);
 					lastSuccessfulCheckInID = id;
+          $('input[type=search]').val("").change();
 					$('a#check_in_'+id).parent().parent().remove()
     			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1);
 					$("#checkin_success").show().delay(6000).fadeOut();
