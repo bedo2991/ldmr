@@ -121,10 +121,11 @@ function sendRequest(id)
                     console.debug(status);
 					lastSuccessfulCheckInID = id;
 					$('a#check_in_'+id).parent().parent().remove()
-        			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1);
-					$("#checkin_success").show().delay(5000).fadeOut();
+    			$('#checked_in_counter').html(($('#checked_in_counter').html()*1) + 1);
+					$("#checkin_success").show().delay(6000).fadeOut();
+          window.scrollTo(0,0);
 		},
-            error: function(xhr,textStatus,error){ 
+            error: function(xhr,textStatus,error){
                 alert(error);
 
         } });
