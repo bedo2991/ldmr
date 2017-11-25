@@ -54,6 +54,8 @@
 echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'table table-striped']); ?>
         <?php endif; ?>
     </div>
+    <details>
+      <summary>__('See more details')</summary>
 	<table class="vertical-table">
         <tr>
             <th><?= __('Manager') ?></th>
@@ -76,7 +78,7 @@ echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'tabl
             <td><?= $event->on_invitation_only ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
-
+</details>
 </div>
 <script>
 	var lastSuccessfulCheckInID = null;
