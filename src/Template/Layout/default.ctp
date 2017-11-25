@@ -44,7 +44,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('cake.css') ?>
 	<?= $this->Html->css('ldmr.css') ?>
   <?php if($this->request->params['controller']=='Events' && $this->request->params['action'] == 'checkin'): ?>
-    <?= $this->Html->css(['offline-language-english.css', 'offline-language-english-indicator.css']) ?>
+    <?= $this->Html->css(['offline-theme-chrome','offline-language-english.css', 'offline-language-english-indicator.css']) ?>
     <?= $this->Html->script('offline.min.js');?>
   <?php endif; ?>
 	<?= $this->fetch('css') ?>
