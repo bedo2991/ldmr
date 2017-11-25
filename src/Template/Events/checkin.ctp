@@ -55,7 +55,7 @@ echo $this->DataTables->table('to-be-checked-table', $options, ['class' => 'tabl
         <?php endif; ?>
     </div>
     <details>
-      <summary>__('See more details')</summary>
+      <summary><?= __('See more details') ?></summary>
 	<table class="vertical-table">
         <tr>
             <th><?= __('Manager') ?></th>
