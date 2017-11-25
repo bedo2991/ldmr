@@ -33,16 +33,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 	<script type="text/javascript" src='<?=$this->request->webroot."DataTables/jQuery-1.12.3/jquery-1.12.3.js"?>'></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/af-2.1.2/sc-1.4.2/se-1.2.0/datatables.css"/>
- 
+
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/af-2.1.2/sc-1.4.2/se-1.2.0/datatables.js"></script>
-	
+
 	<script type="text/javascript" src='<?=$this->request->webroot."js/easy-autocomplete-1_3_5/jquery.easy-autocomplete.min.js"?>'></script>
-	
+
 	<link rel="stylesheet" type="text/css" href='<?=$this->request->webroot."js/easy-autocomplete-1_3_5/easy-autocomplete.min.css"?>'/>
-	
+
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 	<?= $this->Html->css('ldmr.css') ?>
+  <?php if($this->request->params['controller']=='events' && $this->request->params['action'] == 'checkin'): ?>
+    <?= $this->Html->css(['offline-language-english.css', 'offline-language-english-indicator.css']) ?>
+    <?= $this->Html->script('offline.min.js');?>
+  <?php endif; ?>
 	<?= $this->fetch('css') ?>
 	<?= $this->Html->script('DataTables.cakephp.dataTables.js');?>
 </head>
